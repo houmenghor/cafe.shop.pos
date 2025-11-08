@@ -105,7 +105,7 @@ COMMIT;
 
 
 
-1) open file `Connection.cs` class and past your Database Connection:
+1) open file `Connection.cs` class and and only db-name and password:
 
 ```csharp
 using Npgsql;
@@ -114,7 +114,7 @@ namespace CafeShopManagement.Data
     internal class Connection
     {
         private const string ConnectionString =
-           "Host=yourDBHost;Port=yourDBPort;Database=db-name;Username=yourDBUsername;Password=yourDBPassword;";
+           "Host=localhost;Port=5432;Database=db-name;Username=postgres;Password=yourDBPassword;";
 
         public static NpgsqlConnection Open()
         {
