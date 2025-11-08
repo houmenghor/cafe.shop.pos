@@ -51,17 +51,6 @@ Open **psql** or **pgAdmin** and run:
 
 ```sql
 -- Create DB
-CREATE DATABASE cafe_shop_management
-  WITH ENCODING 'UTF8' TEMPLATE template1;
-
--- Create dedicated app user (edit a secure password!)
-CREATE USER cafe_user WITH PASSWORD 'ChangeThisStrongPassword!@#';
-
--- Grant privileges
-GRANT ALL PRIVILEGES ON DATABASE cafe_shop_management TO cafe_user;
-```
-
-> After connecting to the new DB, you can create your schema/tables. For a quick sanity table:
 
 ```sql
 BEGIN;
@@ -114,17 +103,9 @@ COMMIT;
 
 ## 🔌 Connection Tutorial (Npgsql)
 
-> ❗ **Do not hardcode secrets in committed source code.** Prefer **Environment Variables** or **App.config**.
 
-### Option A — Environment Variable (Recommended for Dev)
 
-1) Add a Windows Environment Variable:  
-   - Search *“Edit the system environment variables”* → **Environment Variables…**  
-   - Under *User variables* → **New…**  
-     - **Name**: `CAFESHOP_PGCS`  
-     - **Value**: `Host=localhost;Port=5432;Database=db-name;Username=yourDBUsername;Password=yourDBPassword;`
-
-2) Use the following `Connection` class:
+1) open file `Connection.cs` class and past your Database Connection:
 
 ```csharp
 using Npgsql;
@@ -133,7 +114,7 @@ namespace CafeShopManagement.Data
     internal class Connection
     {
         private const string ConnectionString =
-           "Host=localhost;Port=5432;Database=cafe_shop_management;Username=postgres;Password=menghor100@@$$;";
+           "Host=yourDBHost;Port=yourDBPort;Database=db-name;Username=yourDBUsername;Password=yourDBPassword;";
 
         public static NpgsqlConnection Open()
         {
